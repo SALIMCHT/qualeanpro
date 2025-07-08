@@ -10,7 +10,7 @@ import java.util.List;
 @Stateless
 public class UserDao {
 
-    @PersistenceContext(unitName = "elearningPU")
+    @PersistenceContext(unitName = "qualeanproPU")
     private EntityManager em;
 
     public void create(User user) {
