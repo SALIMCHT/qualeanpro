@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Administrateur")
-public class Administrateur {
+public class Administrateur extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

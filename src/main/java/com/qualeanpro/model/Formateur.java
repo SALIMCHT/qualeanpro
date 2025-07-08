@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Formateur")
-public class Formateur {
+public class Formateur extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
