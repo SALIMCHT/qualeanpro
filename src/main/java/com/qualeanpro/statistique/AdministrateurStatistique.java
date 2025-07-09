@@ -1,4 +1,4 @@
-package com.qualeanpro.statistics;
+package com.qualeanpro.statistique;
 
 public class AdministrateurStatistique extends Statistique{
 
