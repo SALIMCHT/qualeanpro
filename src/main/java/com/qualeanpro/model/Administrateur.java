@@ -3,40 +3,28 @@ package com.qualeanpro.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Administrateur")
-public class Administrateur extends User{
+@Table(name = "administrateur")
+public class Administrateur extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_administrateur")
-    private Long idAdministrateur;
-
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_user", referencedColumnName = "id_user", nullable = false)
-    private User user;
+    // Ajoute ici les champs spécifiques à l'administrateur, s'il y en a
+    // Par exemple :
+    @Column(name = "responsabilite", length = 100)
+    private String responsabilite;
 
     // Constructeurs
     public Administrateur() {}
 
-    public Administrateur(User user) {
-        this.user = user;
+    public Administrateur(String responsabilite) {
+        this.responsabilite = responsabilite;
     }
 
     // Getters & setters
 
-    public Long getIdAdministrateur() {
-        return idAdministrateur;
+    public String getResponsabilite() {
+        return responsabilite;
     }
 
-    public void setIdAdministrateur(Long idAdministrateur) {
-        this.idAdministrateur = idAdministrateur;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setResponsabilite(String responsabilite) {
+        this.responsabilite = responsabilite;
     }
 }
