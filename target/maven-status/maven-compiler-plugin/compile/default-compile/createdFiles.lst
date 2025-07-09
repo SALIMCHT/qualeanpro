@@ -2,10 +2,15 @@ com\qualeanpro\model\User.class
 com\qualeanpro\repository\AdministrateurDao.class
 com\qualeanpro\controller\AdministrateurController.class
 com\qualeanpro\model\Formateur.class
+<<<<<<< HEAD
 com\qualeanpro\exceptions\Gh.class
 com\qualeanpro\controller\ApprenantController.class
 com\qualeanpro\service\FormateurService.class
 com\qualeanpro\statistique\Statistique.class
+=======
+com\qualeanpro\controller\ApprenantController.class
+com\qualeanpro\service\FormateurService.class
+>>>>>>> 7e51dc110036c5cb2827175ea0625adc88c786d8
 com\qualeanpro\dto\FormateurDto.class
 com\qualeanpro\model\Quiz.class
 com\qualeanpro\model\ResponsesDonnee.class
@@ -14,12 +19,16 @@ com\qualeanpro\controller\UserController.class
 com\qualeanpro\model\Apprenant.class
 com\qualeanpro\model\Paiement.class
 com\qualeanpro\dto\AdministrateurDto.class
+<<<<<<< HEAD
 com\qualeanpro\statistique\ApprenantStatistique.class
+=======
+>>>>>>> 7e51dc110036c5cb2827175ea0625adc88c786d8
 com\qualeanpro\service\UserService.class
 com\qualeanpro\model\enums\TypeContenu.class
 com\qualeanpro\dto\ApprenantDto.class
 com\qualeanpro\controller\FormateurController.class
 com\qualeanpro\model\OptionQuestion.class
+<<<<<<< HEAD
 com\qualeanpro\statistique\FormateurStatistique.class
 com\qualeanpro\service\ApprenantService.class
 com\qualeanpro\model\Contenus.class
@@ -27,6 +36,12 @@ com\qualeanpro\model\Certificat.class
 com\qualeanpro\model\Notification.class
 com\qualeanpro\repository\ApprenantDao.class
 com\qualeanpro\config\Da.class
+=======
+com\qualeanpro\service\ApprenantService.class
+com\qualeanpro\model\Contenus.class
+com\qualeanpro\model\Certificat.class
+com\qualeanpro\repository\ApprenantDao.class
+>>>>>>> 7e51dc110036c5cb2827175ea0625adc88c786d8
 com\qualeanpro\model\FormationInscrite.class
 com\qualeanpro\model\Question.class
 com\qualeanpro\model\Formation.class
@@ -34,9 +49,18 @@ com\qualeanpro\repository\FormateurDao.class
 com\qualeanpro\service\AdministrateurService.class
 com\qualeanpro\model\enums\StatutFormation.class
 com\qualeanpro\dto\UserDto.class
+<<<<<<< HEAD
 com\qualeanpro\model\Administrateur.class
 com\qualeanpro\model\Evenement.class
 com\qualeanpro\model\enums\StatutPaiement.class
 com\qualeanpro\statistique\AdministrateurStatistique.class
+=======
+com\qualeanpro\statistics\AdministrateurStatistique.class
+com\qualeanpro\model\Administrateur.class
+com\qualeanpro\model\enums\StatutPaiement.class
+com\qualeanpro\statistics\FormateurStatistique.class
+com\qualeanpro\statistics\Statistique.class
+com\qualeanpro\statistics\ApprenantStatistique.class
+>>>>>>> 7e51dc110036c5cb2827175ea0625adc88c786d8
 com\qualeanpro\security\AuthFilter.class
 com\qualeanpro\model\PassageQuiz.class

@@ -8,7 +8,7 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
-public class UserDao {
+public class UserRepository {
 
     @PersistenceContext(unitName = "qualeanproPU")
     private EntityManager em;
