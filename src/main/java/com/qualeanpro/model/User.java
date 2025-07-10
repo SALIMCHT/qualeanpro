@@ -60,8 +60,11 @@ public abstract class User {
     private String photoProfile;
 
     @Column(name = "dateinscription")
-    private LocalDateTime dateInscription;
+    private LocalDateTime dateinscription;
 
+    @NotNull(message = "La date de naissance ne peut pas être nulle.")  // Valide que la date n'est pas nulle
+    @Past(message = "La date de naissance doit être dans le passé.")  // Valide que la date est dans le passé
+    @Age(min = 18, max = 60, message = "L'âge doit être entre 18 et 60 ans") // AgeValidator & Age
     @Column(name = "datenaissance")
     private LocalDate dateNaissance;
 
@@ -84,8 +87,8 @@ public abstract class User {
     // Initialiser automatiquement la date d'inscription
     @PrePersist
     protected void onCreate() {
-        if (dateInscription == null) {
-            dateInscription = LocalDateTime.now();
+        if (dateinscription == null) {
+        	dateinscription = LocalDateTime.now();
         }
     }
 
@@ -94,7 +97,7 @@ public abstract class User {
     public User() {}
 
     public User(String nom, String prenom, String email, String adresse, String telephone,
-                String motDePasse, String photoProfile, LocalDateTime dateInscription,
+                String motDePasse, String photoProfile, LocalDateTime dateinscription,
                 LocalDate dateNaissance, String ville, String cine, Genre genre, Role role) {
         this.nom = nom;
         this.prenom = prenom;
@@ -103,7 +106,7 @@ public abstract class User {
         this.telephone = telephone;
         this.motDePasse = motDePasse;
         this.photoProfile = photoProfile;
-        this.dateInscription = dateInscription;
+        this.dateinscription = dateinscription;
         this.dateNaissance = dateNaissance;
         this.ville = ville;
         this.cine = cine;
@@ -178,11 +181,11 @@ public abstract class User {
     }
 
     public LocalDateTime getDateInscription() {
-        return dateInscription;
+        return dateinscription;
     }
 
     public void setDateInscription(LocalDateTime dateInscription) {
-        this.dateInscription = dateInscription;
+        this.dateinscription = dateInscription;
     }
 
     public LocalDate getDateNaissance() {

@@ -1,11 +1,10 @@
 package com.qualeanpro.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Certificat")
+@Table(name = "certificat")
 public class Certificat {
 
     @Id
@@ -13,20 +12,20 @@ public class Certificat {
     @Column(name = "id_certificat")
     private Long idCertificat;
 
-    @Column(name = "numeroCertificat", length = 100, nullable = false)
+    @Column(name = "numeroCertificat", length = 100, nullable = false , unique = true)
     private String numeroCertificat;
 
     @Column(name = "dateParticipation", nullable = false)
     private LocalDate dateParticipation;
 
-    @Column(name = "dureeFormation", nullable = false)
+    @Column(name = "dureeformation", nullable = false)
     private Double dureeFormation;
 
     @Column(name = "organisation", length = 100)
     private String organisation;
 
-    @Column(name = "typeForamtion", length = 100)
-    private String typeForamtion;
+    @Column(name = "typeformation", length = 100)
+    private String typeFormation;
 
     @Column(name = "objectif", length = 100)
     private String objectif;
@@ -42,22 +41,29 @@ public class Certificat {
     @JoinColumn(name = "id_apprenant", nullable = false)
     private Apprenant apprenant;
 
+    
+    // 🔗 Relation ManyToOne avec Formation
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_formation", nullable = false)
+    private Formation formation;
+    
     // ✅ Constructeurs
 
     public Certificat() {}
 
     public Certificat(String numeroCertificat, LocalDate dateParticipation, Double dureeFormation,
-                      String organisation, String typeForamtion, String objectif, Boolean partage,
-                      String contents, Apprenant apprenant) {
+                      String organisation, String typeFormation, String objectif, Boolean partage,
+                      String contents, Apprenant apprenant , Formation formation) {
         this.numeroCertificat = numeroCertificat;
         this.dateParticipation = dateParticipation;
         this.dureeFormation = dureeFormation;
         this.organisation = organisation;
-        this.typeForamtion = typeForamtion;
+        this.typeFormation = typeFormation;
         this.objectif = objectif;
         this.partage = partage;
         this.contents = contents;
         this.apprenant = apprenant;
+        this.formation = formation;
     }
 
     // ✅ Getters & Setters
@@ -102,12 +108,12 @@ public class Certificat {
         this.organisation = organisation;
     }
 
-    public String getTypeForamtion() {
-        return typeForamtion;
+    public String getTypeFormation() {
+        return typeFormation;
     }
 
-    public void setTypeForamtion(String typeForamtion) {
-        this.typeForamtion = typeForamtion;
+    public void setTypeFormation(String typeFormation) {
+        this.typeFormation = typeFormation;
     }
 
     public String getObjectif() {
@@ -140,5 +146,13 @@ public class Certificat {
 
     public void setApprenant(Apprenant apprenant) {
         this.apprenant = apprenant;
+    }
+    
+    public Formation getFormation() {
+        return formation;
+    }
+
+    public void setFormation(Formation formation) {
+        this.formation = formation;
     }
 }

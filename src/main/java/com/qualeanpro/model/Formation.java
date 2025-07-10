@@ -2,9 +2,10 @@ package com.qualeanpro.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.qualeanpro.model.enums.StatutFormation;
 
 @Entity
-@Table(name = "Formation")
+@Table(name = "formation")
 public class Formation {
 
     @Id
@@ -18,8 +19,8 @@ public class Formation {
     @Column(name = "description_formation", length = 1000, nullable = false)
     private String descriptionFormation;
 
-    @Column(name = "dateCreation", nullable = false)
-    private LocalDateTime dateCreation;
+    @Column(name = "datecreation", nullable = false)
+    private LocalDateTime datecreation;
 
     @Column(name = "prix", nullable = false)
     private Double prix;
@@ -27,23 +28,25 @@ public class Formation {
     @Column(name = "langue", length = 100, nullable = false)
     private String langue;
 
-    @Column(name = "nombreInscription", nullable = false)
-    private Integer nombreInscription;
-
+    @Column(name = "nombreinscription", nullable = false)
+    private Integer nombreinscription;
+    
+    
+    @Enumerated(EnumType.STRING)
     @Column(name = "statut_formation", length = 50, nullable = false)
-    private String statutFormation;
+    private StatutFormation statutFormation;
 
-    @Column(name = "estPayante", nullable = false)
-    private Boolean estPayante;
+    @Column(name = "estpayante", nullable = false)
+    private Boolean estpayante;
 
     @Column(name = "totalheures", nullable = false)
-    private Double totalHeures;
+    private Double totalheures;
 
     @Column(name = "coupon", length = 100)
     private String coupon;
 
-    @Column(name = "pourcentageRevenuFormateur", nullable = false)
-    private Double pourcentageRevenuFormateur;
+    @Column(name = "pourcentagerevenuformateur", nullable = false)
+    private Double pourcentagerevenuformateur;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_formateur")
@@ -53,19 +56,19 @@ public class Formation {
     }
 
     public Formation(String titreFormation, String descriptionFormation, LocalDateTime dateCreation, Double prix,
-                     String langue, Integer nombreInscription, String statutFormation, Boolean estPayante,
+                     String langue, Integer nombreInscription, StatutFormation statutFormation, Boolean estPayante,
                      Double totalHeures, String coupon, Double pourcentageRevenuFormateur, Formateur formateur) {
         this.titreFormation = titreFormation;
         this.descriptionFormation = descriptionFormation;
-        this.dateCreation = dateCreation;
+        this.datecreation = dateCreation;
         this.prix = prix;
         this.langue = langue;
-        this.nombreInscription = nombreInscription;
+        this.nombreinscription = nombreInscription;
         this.statutFormation = statutFormation;
-        this.estPayante = estPayante;
-        this.totalHeures = totalHeures;
+        this.estpayante = estPayante;
+        this.totalheures = totalHeures;
         this.coupon = coupon;
-        this.pourcentageRevenuFormateur = pourcentageRevenuFormateur;
+        this.pourcentagerevenuformateur = pourcentageRevenuFormateur;
         this.formateur = formateur;
     }
 
@@ -94,11 +97,11 @@ public class Formation {
     }
 
     public LocalDateTime getDateCreation() {
-        return dateCreation;
+        return datecreation;
     }
 
     public void setDateCreation(LocalDateTime dateCreation) {
-        this.dateCreation = dateCreation;
+        this.datecreation = dateCreation;
     }
 
     public Double getPrix() {
@@ -118,35 +121,35 @@ public class Formation {
     }
 
     public Integer getNombreInscription() {
-        return nombreInscription;
+        return nombreinscription;
     }
 
     public void setNombreInscription(Integer nombreInscription) {
-        this.nombreInscription = nombreInscription;
+        this.nombreinscription = nombreInscription;
     }
 
-    public String getStatutFormation() {
+    public StatutFormation getStatutFormation() {
         return statutFormation;
     }
 
-    public void setStatutFormation(String statutFormation) {
+    public void setStatutFormation(StatutFormation statutFormation) {
         this.statutFormation = statutFormation;
     }
 
     public Boolean getEstPayante() {
-        return estPayante;
+        return estpayante;
     }
 
     public void setEstPayante(Boolean estPayante) {
-        this.estPayante = estPayante;
+        this.estpayante = estPayante;
     }
 
     public Double getTotalHeures() {
-        return totalHeures;
+        return totalheures;
     }
 
     public void setTotalHeures(Double totalHeures) {
-        this.totalHeures = totalHeures;
+        this.totalheures = totalHeures;
     }
 
     public String getCoupon() {
@@ -158,11 +161,11 @@ public class Formation {
     }
 
     public Double getPourcentageRevenuFormateur() {
-        return pourcentageRevenuFormateur;
+        return pourcentagerevenuformateur;
     }
 
     public void setPourcentageRevenuFormateur(Double pourcentageRevenuFormateur) {
-        this.pourcentageRevenuFormateur = pourcentageRevenuFormateur;
+        this.pourcentagerevenuformateur = pourcentageRevenuFormateur;
     }
 
     public Formateur getFormateur() {

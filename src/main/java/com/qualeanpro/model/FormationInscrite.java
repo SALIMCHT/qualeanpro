@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "FormationInscrite", uniqueConstraints = {
+@Table(name = "formationinscrite", uniqueConstraints = {
     @UniqueConstraint(columnNames = { "id_apprenant", "id_formation" })
 })
 public class FormationInscrite {
@@ -24,7 +24,7 @@ public class FormationInscrite {
     private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "statut_FormationInscrite", length = 50, nullable = false)
+    @Column(name = "statut_formationinscrite", length = 50, nullable = false)
     private StatutFormation statutFormationInscrite;
 
     @Column(name = "progression", nullable = false)

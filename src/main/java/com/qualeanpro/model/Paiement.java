@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Paiement")
+@Table(name = "paiement")
 public class Paiement {
 
     @Id
@@ -17,11 +17,11 @@ public class Paiement {
     @Column(name = "montant", nullable = false)
     private Double montant;
 
-    @Column(name = "datePaiement", nullable = false)
+    @Column(name = "datepaiement", nullable = false)
     private LocalDateTime datePaiement;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "statut_Paiement", nullable = false, length = 50)
+    @Column(name = "statut_paiement", nullable = false, length = 50)
     private StatutPaiement statutPaiement;
 
     // ✅ Clé étrangère vers Apprenant
