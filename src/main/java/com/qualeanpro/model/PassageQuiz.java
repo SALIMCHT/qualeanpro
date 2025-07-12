@@ -1,43 +1,49 @@
 package com.qualeanpro.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "PassageQuiz")
+@Table(name = "passage_quiz")
 public class PassageQuiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_PassageQuiz")
+    @Column(name = "id_passage_quiz")
     private Long idPassageQuiz;
 
-    @Column(name = "date_passage", nullable = false)
+    @NotNull(message = "La date de passage est obligatoire.")
+    @CreationTimestamp
+    @Column(name = "date_passage", nullable = false, updatable = false)
     private LocalDateTime datePassage;
 
-    @Column(name = "scoreObtenue", nullable = false)
-    private Double scoreObtenue;
+    @NotNull(message = "Le score obtenu est obligatoire.")
+    @Column(name = "scoreobtenue", nullable = false)
+    private Double scoreObtenu;
 
-    @Column(name = "statut_passageQuiz", nullable = false)
+    @NotNull(message = "Le statut du passage est obligatoire.")
+    @Column(name = "statut_passagequiz", nullable = false)
     private Boolean statutPassageQuiz;
 
-    // Relation ManyToOne vers Apprenant
+    @NotNull(message = "L'apprenant est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_Apprenant", nullable = false)
+    @JoinColumn(name = "id_apprenant", nullable = false)
     private Apprenant apprenant;
 
-    // Relation ManyToOne vers Quiz
+    @NotNull(message = "Le quiz associé est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_Quiz", nullable = false)
+    @JoinColumn(name = "id_quiz", nullable = false)
     private Quiz quiz;
 
     // Constructeurs
+
     public PassageQuiz() {}
 
-    public PassageQuiz(LocalDateTime datePassage, Double scoreObtenue, Boolean statutPassageQuiz,
-                      Apprenant apprenant, Quiz quiz) {
-        this.datePassage = datePassage;
-        this.scoreObtenue = scoreObtenue;
+    public PassageQuiz(Double scoreObtenu, Boolean statutPassageQuiz, Apprenant apprenant, Quiz quiz) {
+        this.scoreObtenu = scoreObtenu;
         this.statutPassageQuiz = statutPassageQuiz;
         this.apprenant = apprenant;
         this.quiz = quiz;
@@ -61,12 +67,12 @@ public class PassageQuiz {
         this.datePassage = datePassage;
     }
 
-    public Double getScoreObtenue() {
-        return scoreObtenue;
+    public Double getScoreObtenu() {
+        return scoreObtenu;
     }
 
-    public void setScoreObtenue(Double scoreObtenue) {
-        this.scoreObtenue = scoreObtenue;
+    public void setScoreObtenu(Double scoreObtenu) {
+        this.scoreObtenu = scoreObtenu;
     }
 
     public Boolean getStatutPassageQuiz() {

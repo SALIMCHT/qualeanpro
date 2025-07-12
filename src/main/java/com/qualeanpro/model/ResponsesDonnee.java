@@ -1,6 +1,8 @@
 package com.qualeanpro.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "responses_donnee")
@@ -11,15 +13,17 @@ public class ResponsesDonnee {
     @Column(name = "id_reponse")
     private Long idReponse;
 
-    @Column(name = "valeur_reponse", length = 100)
+    @NotNull(message = "La valeur de la réponse est obligatoire.")
+    @Size(max = 1000, message = "La valeur de la réponse ne peut dépasser 100 caractères.")
+    @Column(name = "valeur_reponse", length = 1000, nullable = false)
     private String valeurReponse;
 
-    // Relation ManyToOne vers PassageQuiz
+    @NotNull(message = "Le passage quiz est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_PassageQuiz", nullable = false)
+    @JoinColumn(name = "id_passage_quiz", nullable = false)
     private PassageQuiz passageQuiz;
 
-    // Relation ManyToOne vers Question
+    @NotNull(message = "La question est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_question", nullable = false)
     private Question question;

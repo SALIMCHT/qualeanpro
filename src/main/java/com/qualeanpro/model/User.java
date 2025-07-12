@@ -8,6 +8,8 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "utilisateur")
@@ -58,7 +60,8 @@ public abstract class User {
 
     @Column(name = "photoprofile", length = 100)
     private String photoProfile;
-
+    
+    @CreationTimestamp
     @Column(name = "dateinscription")
     private LocalDateTime dateinscription;
 
@@ -84,13 +87,7 @@ public abstract class User {
     @Column(name = "role", nullable = false, length = 20)
     private Role role;
 
-    // Initialiser automatiquement la date d'inscription
-    @PrePersist
-    protected void onCreate() {
-        if (dateinscription == null) {
-        	dateinscription = LocalDateTime.now();
-        }
-    }
+    
 
     // Constructeurs 
 
@@ -182,10 +179,6 @@ public abstract class User {
 
     public LocalDateTime getDateInscription() {
         return dateinscription;
-    }
-
-    public void setDateInscription(LocalDateTime dateInscription) {
-        this.dateinscription = dateInscription;
     }
 
     public LocalDate getDateNaissance() {

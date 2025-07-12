@@ -1,25 +1,31 @@
 package com.qualeanpro.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "Question")
+@Table(name = "question")
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Question")
+    @Column(name = "id_question")
     private Long idQuestion;
 
-    @Column(name = "enonce", length = 100)
+    @NotNull(message = "L’énoncé de la question est obligatoire.")
+    @Size(min = 50, max = 1000, message = "L’énoncé doit contenir entre 5 et 500 caractères.")
+    @Column(name = "enonce", length = 1000, nullable = false)
     private String enonce;
 
-    @Column(name = "bonneReponse", length = 100)
+    @NotNull(message = "La bonne réponse est obligatoire.")
+    @Size(max = 500, message = "La bonne réponse ne peut pas dépasser 255 caractères.")
+    @Column(name = "bonne_reponse", length = 500, nullable = false)
     private String bonneReponse;
 
-    // Relation ManyToOne vers Quiz
+    @NotNull(message = "Le quiz associé est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_Quiz", nullable = false)
+    @JoinColumn(name = "id_quiz", nullable = false)
     private Quiz quiz;
 
     // Constructeurs
@@ -32,6 +38,7 @@ public class Question {
     }
 
     // Getters & Setters
+
     public Long getIdQuestion() {
         return idQuestion;
     }

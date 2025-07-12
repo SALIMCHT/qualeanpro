@@ -1,23 +1,27 @@
 package com.qualeanpro.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Quiz")
+@Table(name = "quiz")
 public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Quiz")
+    @Column(name = "id_quiz")
     private Long idQuiz;
 
-    @Column(name = "titre_Quiz", length = 100, nullable = false)
+    @NotNull(message = "Le titre du quiz est obligatoire.")
+    @Column(name = "titre_quiz", length = 100, nullable = false)
     private String titreQuiz;
 
-    @Column(name = "duree_Quiz", nullable = false)
-    private Double dureeQuiz;
+    @NotNull(message = "La durée du quiz est obligatoire.")
+    @Column(name = "duree_quiz", nullable = false)
+    private BigDecimal dureeQuiz;
 
-    // 🔗 Relation ManyToOne avec Formation
+    @NotNull(message = "La formation associée est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_formation", nullable = false)
     private Formation formation;
@@ -26,7 +30,7 @@ public class Quiz {
 
     public Quiz() {}
 
-    public Quiz(String titreQuiz, Double dureeQuiz, Formation formation) {
+    public Quiz(String titreQuiz, BigDecimal dureeQuiz, Formation formation) {
         this.titreQuiz = titreQuiz;
         this.dureeQuiz = dureeQuiz;
         this.formation = formation;
@@ -50,11 +54,11 @@ public class Quiz {
         this.titreQuiz = titreQuiz;
     }
 
-    public Double getDureeQuiz() {
+    public BigDecimal getDureeQuiz() {
         return dureeQuiz;
     }
 
-    public void setDureeQuiz(Double dureeQuiz) {
+    public void setDureeQuiz(BigDecimal dureeQuiz) {
         this.dureeQuiz = dureeQuiz;
     }
 

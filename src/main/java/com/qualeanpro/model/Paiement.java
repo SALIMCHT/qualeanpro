@@ -2,8 +2,12 @@ package com.qualeanpro.model;
 
 import com.qualeanpro.model.enums.StatutPaiement;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "paiement")
@@ -14,22 +18,28 @@ public class Paiement {
     @Column(name = "id_paiement")
     private Long idPaiement;
 
+    @NotNull(message="Le montant du paiement est obligatoire.")
+    @Positive
     @Column(name = "montant", nullable = false)
     private Double montant;
 
-    @Column(name = "datepaiement", nullable = false)
+    @CreationTimestamp
+    @Column(name = "datepaiement", nullable = false, updatable = false)
     private LocalDateTime datePaiement;
 
+    @NotNull(message = "Le statut du paiement est obligatoire.")
     @Enumerated(EnumType.STRING)
     @Column(name = "statut_paiement", nullable = false, length = 50)
     private StatutPaiement statutPaiement;
 
     // ✅ Clé étrangère vers Apprenant
+    @NotNull(message = "L'apprenant est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_apprenant", nullable = false)
     private Apprenant apprenant;
 
     // ✅ Clé étrangère vers Formation
+    @NotNull(message = "La formation est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_formation", nullable = false)
     private Formation formation;
@@ -67,10 +77,6 @@ public class Paiement {
 
     public LocalDateTime getDatePaiement() {
         return datePaiement;
-    }
-
-    public void setDatePaiement(LocalDateTime datePaiement) {
-        this.datePaiement = datePaiement;
     }
 
     public StatutPaiement getStatutPaiement() {

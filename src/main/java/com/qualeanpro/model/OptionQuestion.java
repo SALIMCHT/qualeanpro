@@ -1,6 +1,8 @@
 package com.qualeanpro.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "option_question")
@@ -11,10 +13,13 @@ public class OptionQuestion {
     @Column(name = "id_option")
     private Long idOption;
 
-    @Column(name = "Libelle", length = 200, nullable = false)
+    @NotNull(message = "Le libellé de l'option est obligatoire.")
+    @Size(max = 1000, message = "Le libellé ne peut pas dépasser 200 caractères.")
+    @Column(name = "libelle", length = 1000, nullable = false)
     private String libelle;
 
     // Relation ManyToOne vers Question
+    @NotNull(message = "La question associée est obligatoire.")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_question", nullable = false)
     private Question question;

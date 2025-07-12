@@ -79,7 +79,7 @@
     
 
 
-    <build>
+    	<build>
         <finalName>qualeanpro-backend</finalName>
         <plugins>
             <!-- Plugin Maven WAR -->
