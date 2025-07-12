@@ -8,7 +8,7 @@
 
         <properties>
             <!-- Hibernate : création ou mise à jour du schéma -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="update" />
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" />
 
             <!-- Logging SQL -->
             <property name="hibernate.show_sql" value="true"/>

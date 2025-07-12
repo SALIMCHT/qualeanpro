@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "contenus") // convention snake_case pour les tables
+@Table(name = "contenu") // convention snake_case pour les tables
 public class Contenu {
 
     @Id
