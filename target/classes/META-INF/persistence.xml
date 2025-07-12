@@ -7,26 +7,30 @@
         <jta-data-source>java:/PostgresDS</jta-data-source>
 
         <properties>
-            <!-- Met à jour le schéma automatiquement (utile en dev) -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="validate"/>
+            <!-- Hibernate : création ou mise à jour du schéma -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="update" />
 
-            <!-- Affiche les requêtes SQL dans la console -->
-            <property name="hibernate.show_sql" value="false"/>
-            <property name="hibernate.format_sql" value="false"/>
-            <property name="hibernate.use_sql_comments" value="false"/>
+            <!-- Logging SQL -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
 
+            <!-- Dialecte PostgreSQL -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 
-            <!-- Dialecte spécifique PostgreSQL -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.ejb.entitymanager_factory_name" value="qualeanproPU"/>
-            <property name="hibernate.ejb.interceptor" value="org.hibernate.ejb.interceptor.Callback"/>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/qualeanpro"/>
-
-            <!-- les sessions lentes et la gestion des caches -->
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+            <!-- C3P0 (optionnel car WildFly gère les connexions) -->
+            <!-- Tu peux supprimer ces lignes si tu utilises JTA + DataSource WildFly -->
+            <!--
             <property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="20"/>
+            -->
 
+            <!-- Inutile en JTA -->
+            <!-- Ces propriétés JDBC ne sont pas utilisées avec JTA -->
+            <!--
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/qualeanpro"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="motdepasse"/>
+            -->
 
         </properties>
     </persistence-unit>
