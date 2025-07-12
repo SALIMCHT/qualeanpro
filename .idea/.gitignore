@@ -1,0 +1,26 @@
+# Eclipse
+.settings/
+.project
+.classpath
+
+# Maven
+target/
+
+# Fichiers système
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# JetBrains (si jamais utilisé)
+.idea/
+*.iml
+
+# OS files
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Git ignore lui-même
+.gitignore
